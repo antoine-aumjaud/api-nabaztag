@@ -1,0 +1,10 @@
+{
+    "secureKey" : "xxx",
+
+    "openjabnabCodeIsSleepting": "13",
+    "openjabnabCodeStandup": "7",
+    "openjabnabUrl": "http://openjabnab.fr/ojn/FR/api.jsp",
+    "openjabnabToken": "xxx",
+    
+    "nabaztagMac": "xxx"
+}

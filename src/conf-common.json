@@ -1,0 +1,5 @@
+{
+    "application_name": "{NAME}",
+    "application_version": "{VERSION}",
+    "build_date": "{BUILD_DATE}"
+}
