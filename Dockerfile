@@ -12,4 +12,4 @@ RUN mkdir logs
 VOLUME ./conf
 VOLUME ./logs
 
-CMD node server.js > logs/api-family.txt
+CMD node server.js > logs/api-nabaztag.txt
