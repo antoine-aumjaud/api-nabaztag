@@ -1,5 +1,7 @@
 #!/bin/sh
-mkdir dist
+if [ ! -d dist ] 
+then mkdir dist
+fi
 
 NAME=$(cat package.json | grep name | awk -F: '{ print $2 }' | sed 's/[ \",]//g')
 VERSION=$(cat package.json | grep version | awk -F: '{ print $2 }' | sed 's/[ \",]//g')

@@ -8,21 +8,25 @@ export default class NabaztagRessource {
 
     public getRouter() : Router {
         return Router()
-            .get("/isWakeUp",     (req: Request, res: Response) => this.isWakeUp(res))
+            .get("/isAwake",      (req: Request, res: Response) => this.isAwake(res))
             .post("/wakeUp",      (req: Request, res: Response) => this.wakeUp(res))
+            .post("/sleep",       (req: Request, res: Response) => this.sleep(res))
             .post("/sendMessage", (req: Request, res: Response) => this.sendMessage(req, res))
             .post("/moveEarLeft", (req: Request, res: Response) => this.moveEarLeft(req, res))
             .post("/moveEarRight",(req: Request, res: Response) => this.moveEarRight(req, res))
             .post("/changeColor", (req: Request, res: Response) => this.changeColor(req, res))
     }
 
-    public isWakeUp(response: Response) {
-        this.nabaztagService.isWakeUp()
-            .then((result) => response.send(result));
+    public isAwake(response: Response) {
+        this.nabaztagService.isAwake()
+            .then((result) => response.json({isAwake: result}));
     }
     public wakeUp(response: Response) {
-        this.nabaztagService.isWakeUp()
-            .then((result) => this.nabaztagService.wakeUp());
+        this.nabaztagService.wakeUp();
+        response.end();
+    }
+    public sleep(response: Response) {
+        this.nabaztagService.sleep();
         response.end();
     }
     public sendMessage(request: Request, response: Response) {

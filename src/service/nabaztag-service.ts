@@ -6,14 +6,20 @@ export default class NabaztagService {
     //doc    http://openjabnab.fr/ojn_admin/api.php
     //config http://openjabnab.fr/ojn_admin/bunny_plugin.php?p=callurl
 
-    public isWakeUp() : Promise<boolean> {
+    public isAwake() : Promise<boolean> {
         return this.callAction(config.openjabnabCodeIsSleepting)
-            .then(result => result.indexOf('YES') > 0);
+            .then(result => result.indexOf('NO') > 0);
     }
     public wakeUp() {
-        this.isWakeUp()
+        this.isAwake()
             .then(isAwake => {
-                if(!isAwake) this.callAction(config.openjabnabCodeStandup);
+                if(!isAwake) this.callAction(config.openjabnabCodeWakeup);
+            }); 
+    }
+    public sleep() {
+        this.isAwake()
+            .then(isAwake => {
+                if(isAwake) this.callAction(config.openjabnabCodeSleep);
             }); 
     }
     public sendMessage(message: string) {

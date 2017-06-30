@@ -1,8 +1,9 @@
 {
     "secureKey" : "xxx",
 
-    "openjabnabCodeIsSleepting": "13",
-    "openjabnabCodeStandup": "7",
+    "openjabnabCodeIsSleepting": "7",
+    "openjabnabCodeWakeup": "13",
+    "openjabnabCodeSleep": "14",
     "openjabnabUrl": "http://openjabnab.fr/ojn/FR/api.jsp",
     "openjabnabToken": "xxx",
     

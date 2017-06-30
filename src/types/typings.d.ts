@@ -8,7 +8,8 @@ declare module "*/api-nabaztag.json" {
     export const secureKey: string;
 
     export const openjabnabCodeIsSleepting: number;
-    export const openjabnabCodeStandup: number;
+    export const openjabnabCodeWakeup: number;
+    export const openjabnabCodeSleep: number;
     export const openjabnabUrl: string;
     export const openjabnabToken: string;
 
