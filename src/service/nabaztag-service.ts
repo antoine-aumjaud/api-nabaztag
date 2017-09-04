@@ -1,10 +1,13 @@
 import * as http from 'http';
+import * as semaphore from 'semaphore';
 
 import * as config from '../conf/api-nabaztag.json';
 
 export default class NabaztagService {
     //doc    http://openjabnab.fr/ojn_admin/api.php
     //config http://openjabnab.fr/ojn_admin/bunny_plugin.php?p=callurl
+
+    private speechSemaphore = semaphore(1);
 
     public isAwake() : Promise<boolean> {
         return this.callAction(config.openjabnabCodeIsSleepting)
@@ -23,8 +26,14 @@ export default class NabaztagService {
             }); 
     }
     public sendMessage(message: string) {
-        this.callApi('tts', encodeURIComponent(message));
+        //only one call at a time
+        //+ add a delay between two tts
+        this.speechSemaphore.take(() => {
+            this.callApi('tts', encodeURIComponent(message))
+                .then(() => setTimeout(() => this.speechSemaphore.leave(), 2000)) 
+        });
     }
+
     public moveEarLeft(value: number) {
         this.callApi('posleft', value);
     }
@@ -40,7 +49,7 @@ export default class NabaztagService {
     }
 
     private callApi(type: string, message: any = ""): Promise<string> {
-        let url = config.openjabnabUrl 
+        const url = config.openjabnabUrl 
             + '?sn=' + config.nabaztagMac
             + '&token=' + config.openjabnabToken 
             + '&' + type + '=' + message;
