@@ -30,7 +30,8 @@ export default class NabaztagService {
         //+ add a delay between two tts
         this.speechSemaphore.take(() => {
             this.callApi('tts', encodeURIComponent(message))
-                .then(() => setTimeout(() => this.speechSemaphore.leave(), 2000)) 
+                .then(() => setTimeout(() => this.speechSemaphore.leave(), 2000))
+                .catch(() => this.speechSemaphore.leave()) 
         });
     }
 
