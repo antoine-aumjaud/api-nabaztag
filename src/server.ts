@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import { ExpressApp } from 'api-nodelib';
 
-import TechnicalRessource from "./requesthandler/technical-resource";
 import NabaztagRessource  from "./requesthandler/nabaztag-resource";
 
 export class Server {
@@ -27,9 +27,8 @@ export class Server {
    * Create router
    */
   public routes() {
-
     this.app
-      .use('/', new TechnicalRessource().getRouter())
+      .use('/', new ExpressApp('api-nabaztag').router())
       .use('/secure', new NabaztagRessource().getRouter())
   }
 }

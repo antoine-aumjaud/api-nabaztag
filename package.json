@@ -9,14 +9,15 @@
     "build-tsc": "tsc",
     "build-tsc-mon": "tsc -w",
     "build": "npm run build-config && npm run build-tsc",
-    "debug": "npm run build && node --inspect dist/server.js",
-    "start": "npm run build && node dist/server.js",
-    "start-mon": "npm run build-config && nodemon -e ts  --exec \"npm run build-tsc && node dist/server.js\"",
+    "debug": "npm run build && cd dist && node --inspect server.js",
+    "start": "npm run build && cd dist && node server.js",
+    "start-mon": "npm run build-config && nodemon -e ts  --exec \"npm run build-tsc && cd dist && node server.js\"",
     "test": "npm run build && jasmine --config=test/jasmine.json"
   },
   "main": "src/server.js",
   "repository": "https://github.com/antoine-aumjaud/api-nabaztag",
   "dependencies": {
+    "api-nodelib": "antoine-aumjaud/api-nodelib#master",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "semaphore": "^1.1.0"
@@ -26,8 +27,8 @@
     "@types/express": "^4.0.36",
     "@types/node": "^7.0.31",
     "@types/semaphore": "^1.1.0",
+    "jasmine": "^2.6.0",
     "nodemon": "^1.11.0",
-    "typescript": "^2.3.4",
-    "jasmine": "^2.6.0"
+    "typescript": "^2.3.4"
   }
 }
