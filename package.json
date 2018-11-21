@@ -1,11 +1,11 @@
 {
   "name": "api-nabaztag",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "API Nabaztag",
   "license": "MIT",
   "author": "Antoine Aumjaud",
   "scripts": {
-    "build-config": "./build-config.sh",
+    "build-config": "build-config.sh",
     "build-tsc": "tsc",
     "build-tsc-mon": "tsc -w",
     "build": "npm run build-config && npm run build-tsc",
